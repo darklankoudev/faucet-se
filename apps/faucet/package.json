@@ -2,8 +2,8 @@
   "name": "@namada/faucet",
   "version": "0.1.0",
   "description": "Namada Faucet",
-  "repository": "https://github.com/anoma/namada-interface/",
-  "author": "Heliax Dev <info@heliax.dev>",
+  "repository": "https://github.com/thanhphm-cryptoBuild/faucet-se",
+  "author": "thanhphm",
   "license": "MIT",
   "private": true,
   "scripts": {
