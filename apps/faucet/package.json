@@ -5,7 +5,7 @@
   "repository": "https://github.com/thanhphm-cryptoBuild/faucet-se",
   "author": "thanhphm",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "scripts": {
     "start": "webpack-dev-server",
     "start:proxy": "node ./scripts/startProxy.js",
