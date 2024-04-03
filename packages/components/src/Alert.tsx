@@ -3,16 +3,16 @@ import { tv, type VariantProps } from "tailwind-variants";
 
 const alert = tv({
   slots: {
-    base: "border border-current rounded-lg text-base font-normal px-4 py-5",
-    title: "font-bold block uppercase text-sm mb-1.5",
+    base: "border border-current rounded-md text-base font-normal",
+    title: "font-bold block uppercase text-sm mb-1",
   },
   variants: {
     type: {
       success: "",
-      error: { base: "text-red-500" },
-      warning: { base: "bg-yellow-900 text-yellow" },
+      error: { base: "text-red-500 px-4 py-3" },
+      warning: { base: "bg-neutral-800 px-4 py-3" },
       info: {
-        base: "bg-neutral-900 text-white border-0",
+        base: "border-0 px-4 py-3",
         title: "text-yellow",
       },
     },

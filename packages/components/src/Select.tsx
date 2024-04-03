@@ -10,11 +10,12 @@ export type Option<T> = {
 
 const selectClassList = tv({
   slots: {
-    label: "text-sm font-medium text-neutral-300 w-full [&_p]:pb-1",
-    wrapper: "relative flex justify-end items-center w-full py-3 text-yellow",
+    label: "text-sm font-medium text-white text-lg w-full [&_p]:pb-1 pl-1",
+    wrapper:
+      "relative flex justify-end items-center w-full py-6 text-white text-base",
     select: clsx(
-      "unset w-full py-[0.875em] px-[1em] rounded-lg absolute left-0 bg-neutral-800",
-      "h-12 mt-2 pr-2 pl-4 cursor-pointer"
+      "unset w-full border focus:border-yellow py-[1em] px-[2em] rounded-md absolute left-0 bg-neutral-800",
+      "h-15 mt-2 pr-2 pl-4 cursor-pointer border border-current"
     ),
   },
 });
@@ -53,7 +54,7 @@ function Select<T>({
             </option>
           ))}
         </select>
-        <i className="text-[20px] text-yellow">
+        <i className="text-[20px] text-white">
           <GoArrowDown />
         </i>
       </div>

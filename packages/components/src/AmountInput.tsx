@@ -69,9 +69,9 @@ export const AmountInput: React.FC<Props> = ({
   const [validationError, setValidationError] = useState<string>();
 
   const valueChanged =
-    value === undefined || lastKnownValue === undefined
-      ? value !== lastKnownValue
-      : !value.isEqualTo(lastKnownValue);
+    value === undefined || lastKnownValue === undefined ?
+      value !== lastKnownValue
+    : !value.isEqualTo(lastKnownValue);
 
   if (valueChanged) {
     setLastKnownValue(value);
@@ -79,9 +79,9 @@ export const AmountInput: React.FC<Props> = ({
   }
 
   const errorMessages: Record<ValidationError, string> = {
-    NotANumber: "Not a number",
-    TooSmall: `Amount is lower than the minimum (${min})`,
-    TooBig: `Amount is higher than the maximum (${max})`,
+    NotANumber: "Must be a number",
+    TooSmall: `Must enter minimum amount from ${min}`,
+    TooBig: `Amount is higher than the maximum ${max}`,
     TooManyDecimalPlaces: `Maximum decimal places is ${maxDecimalPlaces}`,
   };
 
@@ -98,9 +98,9 @@ export const AmountInput: React.FC<Props> = ({
     const asBigNumber = validateResult.ok ? validateResult.value : undefined;
 
     const error =
-      validateResult.ok || stringValue === ""
-        ? ""
-        : errorMessages[validateResult.error];
+      validateResult.ok || stringValue === "" ?
+        ""
+      : errorMessages[validateResult.error];
     setValidationError(error);
 
     setLastKnownValue(asBigNumber);

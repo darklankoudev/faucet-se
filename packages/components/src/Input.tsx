@@ -9,14 +9,14 @@ import { GoEye, GoEyeClosed } from "react-icons/go";
 const inputClassList = tv({
   slots: {
     field: clsx(
-      "bg-black border rounded-sm text-white text-base font-medium leading-[1.25]",
+      "bg-black border rounded-md text-white text-base font-medium leading-[1.25]",
       "py-5 px-4 w-full transition-all duration-150 ease-out focus:outline-0 active:outline-0",
       "placeholder:text-neutral-700 placeholder:transition-opacity placeholder:duration-150 placeholder:ease-out",
       "hover:placeholder:opacity-70 focus:placeholder:opacity-0 select:bg-neutral-600",
       "[&[readonly]]:select-none [&[readonly]]:pointer-events-none"
     ),
-    label: "text-white text-sm font-medium [&_p]:pb-1",
-    labelText: "pl-1.5",
+    label: "text-white text-lg font-medium [&_p]:pb-1",
+    labelText: "pl-1",
     error: "text-red-500 hidden text-xs font-normal pl-1.5",
     inputWrapper: "flex mt-2 mb-1 relative",
     icon: clsx(
@@ -49,7 +49,7 @@ const inputClassList = tv({
       primary: { field: "border-yellow" },
       secondary: { field: "border-cyan" },
       neutral: {
-        field: "border-transparent focus:border-yellow active:border-yellow",
+        field: "border-cyan focus:border-yellow active:border-yellow",
       },
     },
   },
@@ -108,7 +108,9 @@ export const Input = ({
           aria-labelledby={passwordShown ? "Hide password" : "Display password"}
           onClick={() => setPasswordShown(!passwordShown)}
         >
-          {passwordShown ? <GoEye /> : <GoEyeClosed />}
+          {passwordShown ?
+            <GoEye />
+          : <GoEyeClosed />}
         </span>
       );
     },
@@ -166,11 +168,9 @@ export const Input = ({
     >
       {label && <span className={classes.labelText()}>{label}</span>}
       <div className={classes.inputWrapper()}>
-        {sensitive ? (
+        {sensitive ?
           <ContentMasker color={theme}>{element}</ContentMasker>
-        ) : (
-          element
-        )}
+        : element}
         {!hideIcon && icon}
         {children}
       </div>
