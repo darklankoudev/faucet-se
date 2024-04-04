@@ -1,6 +1,6 @@
 import { ColorMode, DesignConfiguration } from "@namada/utils";
 import styled, { createGlobalStyle } from "styled-components";
-import imageBG from "../assets/background.svg"
+// import imageBG from "../assets/background.svg"
 type GlobalStyleProps = {
   colorMode: ColorMode;
 };
@@ -37,10 +37,6 @@ export const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
     background-color: ${(props) => props.theme.colors.primary.main};
     transition: background-color 0.5s ease;
     min-width: fit-content;
-    background-image: url(${imageBG});
-    background-size: 770px;
-    background-repeat: repeat;
-    background-attachment: fixed;
 `;
 export const AppContainer = styled.div`
   display: flex;
@@ -116,15 +112,27 @@ export const BannerContents = styled.div`
 export const BackgroundImage = styled.div<{
   imageUrl: string;
 }>`
-  position: absolute;
   width: 100%;
   height: 100vh;
-  top: 0;
-  left: 0;
   z-index: 0;
   background-image: url(${(props) => props.imageUrl});
-  background-size: 120px;
+  background-size: 770px;
+  background-attachment: fixed;
 `;
+
+
+export const BackgroundImageFix = styled.div<{
+  imageUrl: string;
+}>`
+  position: absolute;
+  width: 100%;
+  height: 10vh;
+  z-index: 0;
+  background-image: url(${(props) => props.imageUrl});
+  background-size: 770px;
+  background-attachment: fixed;
+`;
+
 
 export const InfoContainer = styled.div`
   margin: 40px 20px;

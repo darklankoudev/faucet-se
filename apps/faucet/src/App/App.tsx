@@ -7,6 +7,7 @@ import { ColorMode, getTheme } from "@namada/utils";
 import {
   AppContainer,
   BackgroundImage,
+  BackgroundImageFix,
   Banner,
   BannerContents,
   BottomSection,
@@ -22,8 +23,9 @@ import { chains } from "@namada/chains";
 import { useUntil } from "@namada/hooks";
 import { Account, AccountType } from "@namada/types";
 import { API } from "utils";
-import dotsBackground from "../../public/bg-dots.svg";
-import { Faq } from "./Faq";
+// import dotsBackground from "../../public/bg-dots.svg";
+import logoBackground from "../../public/bg-logo.svg";
+// import { Faq } from "./Faq";
 
 const DEFAULT_URL = "http://localhost:5000";
 const DEFAULT_ENDPOINT = "/api/se/faucet";
@@ -201,7 +203,7 @@ export const App: React.FC = () => {
         ...settings,
       }}
     >
-      {/* <BackgroundImage imageUrl={dotsBackground} /> */}
+      <BackgroundImage imageUrl={logoBackground} />
       <ThemeProvider theme={theme}>
         {!isTestnetLive && settings?.startsAtText && (
           <Banner>
@@ -212,7 +214,7 @@ export const App: React.FC = () => {
           </Banner>
         )}
         <GlobalStyles colorMode={colorMode} />
-        {/* <BackgroundImage imageUrl={dotsBackground} /> */}
+        <BackgroundImageFix imageUrl={logoBackground} />
         <AppContainer>
           <ContentContainer>
             <TopSection>
