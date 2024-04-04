@@ -80,9 +80,9 @@ export const AmountInput: React.FC<Props> = ({
 
   const errorMessages: Record<ValidationError, string> = {
     NotANumber: "Must be a number",
-    TooSmall: `Must enter minimum amount from ${min}`,
-    TooBig: `Amount is higher than the maximum ${max}`,
-    TooManyDecimalPlaces: `Maximum decimal places is ${maxDecimalPlaces}`,
+    TooSmall: `Must enter minimum amount from ${min} NAAN`,
+    TooBig: `Amount is higher than the maximum ${max} NAAN`,
+    TooManyDecimalPlaces: `Maximum decimal places is ${maxDecimalPlaces} NAAN`,
   };
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {

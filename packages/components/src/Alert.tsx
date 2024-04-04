@@ -9,10 +9,10 @@ const alert = tv({
   variants: {
     type: {
       success: "",
-      error: { base: "text-red-500 px-4 py-3" },
-      warning: { base: "bg-neutral-800 px-4 py-3" },
+      error: { base: "text-center text-red-500 px-4 py-4 mt-4" },
+      warning: { base: "bg-neutral-800 border-yellow px-4 py-4" },
       info: {
-        base: "border-0 px-4 py-3",
+        base: "text-center border-0 px-4 py-3",
         title: "text-yellow",
       },
     },

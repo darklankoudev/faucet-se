@@ -121,8 +121,8 @@ export const getTimeStamp = (): number => Math.floor(Date.now() / 1000);
  */
 export const shortenAddress = (
   address: string,
-  prefixLength = 32,
-  suffixLength = 6,
+  prefixLength = 19,
+  suffixLength = 19,
   delimiter = "..."
 ): string => {
   const prefix = address.substring(0, prefixLength);

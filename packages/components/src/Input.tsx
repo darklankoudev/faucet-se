@@ -17,7 +17,7 @@ const inputClassList = tv({
     ),
     label: "text-white text-lg font-medium [&_p]:pb-1",
     labelText: "pl-1",
-    error: "text-red-500 hidden text-xs font-normal pl-1.5",
+    error: "text-red-500 hidden text-md font-normal pl-1.5 mt-2",
     inputWrapper: "flex mt-2 mb-1 relative",
     icon: clsx(
       "flex items-center cursor-pointer h-full absolute right-4 top-0 text-2xl",
