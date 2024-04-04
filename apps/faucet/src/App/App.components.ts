@@ -1,6 +1,6 @@
 import { ColorMode, DesignConfiguration } from "@namada/utils";
 import styled, { createGlobalStyle } from "styled-components";
-
+import imageBG from "../../public/background.svg"
 type GlobalStyleProps = {
   colorMode: ColorMode;
 };
@@ -34,10 +34,13 @@ const getColor = (
 // on whether the user is logged in
 export const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
   html, body {
-    background-color: ${(props) => props.theme.colors.secondary.main};
-    transition: background-color 0.5s ease;
+    background-color: ${(props) => props.theme.colors.primary.main};
+    // transition: background-color 0.5s ease;
     min-width: fit-content;
-  }
+    background-image: url(${imageBG});
+    background-size: 770px;
+    background-repeat: repeat;
+    // background-attachment: fixed;
 `;
 export const AppContainer = styled.div`
   display: flex;
@@ -62,16 +65,18 @@ export const TopSection = styled.section`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 `;
 
 export const BottomSection = styled.section`
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
   align-items: flex-start;
   height: 100%;
   width: 100%;
+  margin-top: 20px;
+  margin-bottom: 65px;
 `;
 
 export const FaucetContainer = styled.div`
@@ -130,7 +135,7 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
-  top: 18%;
+  top: 14%;
   width: 100%;
   // height: 100vh;
   max-width: 762px;

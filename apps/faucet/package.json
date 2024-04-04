@@ -2,10 +2,10 @@
   "name": "@namada/faucet",
   "version": "0.1.0",
   "description": "Namada Faucet",
-  "repository": "https://github.com/thanhphm-cryptoBuild/faucet-se",
-  "author": "thanhphm",
+  "repository": "https://github.com/anoma/namada-interface/",
+  "author": "Heliax Dev <info@heliax.dev>",
   "license": "MIT",
-  "private": false,
+  "private": true,
   "scripts": {
     "start": "webpack-dev-server",
     "start:proxy": "node ./scripts/startProxy.js",

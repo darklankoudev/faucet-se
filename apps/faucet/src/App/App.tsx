@@ -1,6 +1,5 @@
 import React, { createContext, useCallback, useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
-
 import { ActionButton, Alert, Heading } from "@namada/components";
 import { Namada } from "@namada/integrations";
 import { ColorMode, getTheme } from "@namada/utils";
@@ -10,6 +9,7 @@ import {
   BackgroundImage,
   Banner,
   BannerContents,
+  BottomSection,
   ContentContainer,
   FaucetContainer,
   GlobalStyles,
@@ -23,9 +23,10 @@ import { useUntil } from "@namada/hooks";
 import { Account, AccountType } from "@namada/types";
 import { API } from "utils";
 import dotsBackground from "../../public/bg-dots.svg";
+import { Faq } from "./Faq";
 
 const DEFAULT_URL = "http://localhost:5000";
-const DEFAULT_ENDPOINT = "/api/v1/faucet";
+const DEFAULT_ENDPOINT = "/api/se/faucet";
 const DEFAULT_FAUCET_LIMIT = "20";
 
 const {
@@ -42,6 +43,8 @@ const api = new API(url);
 const limit = parseInt(faucetLimit);
 const runFullNodeUrl = "https://docs.namada.net/operators/ledger";
 const becomeBuilderUrl = "https://docs.namada.net/integrating-with-namada";
+const twitterUrl = 'https://twitter.com/Andytruong3979'
+const installEX = 'https://chromewebstore.google.com/detail/namada-extension/hnebcbhjpeejiclgbohcijljcnjdofek'
 
 type Settings = {
   difficulty?: number;
@@ -142,7 +145,7 @@ export const App: React.FC = () => {
           .catch((e) => {
             const message = e.errors?.message;
             setSettingsError(
-              `Error requesting settings: ${message?.join(" ")}`
+              `Error requesting rules: ${message?.join(" ")}`
             );
             throw new Error(e);
           });
@@ -154,8 +157,9 @@ export const App: React.FC = () => {
         });
       } catch (e) {
         // setSettingsError(`Failed to load settings! ${e}`);
+        console.log(e);
         setSettingsError(
-          `Failed to connect pool, please reload the page! ${e}`
+          `Failed to connect pool, please reload the page!`
         );
       }
     })();
@@ -167,7 +171,7 @@ export const App: React.FC = () => {
         const isIntegrationDetected = integration.detect();
 
         if (!isIntegrationDetected) {
-          throw new Error("Extension not installed!");
+          throw new Error("Namada Wallet Extension not installed!");
         }
 
         await integration.connect();
@@ -197,7 +201,7 @@ export const App: React.FC = () => {
         ...settings,
       }}
     >
-      <BackgroundImage imageUrl={dotsBackground} />
+      {/* <BackgroundImage imageUrl={dotsBackground} /> */}
       <ThemeProvider theme={theme}>
         {!isTestnetLive && settings?.startsAtText && (
           <Banner>
@@ -208,11 +212,12 @@ export const App: React.FC = () => {
           </Banner>
         )}
         <GlobalStyles colorMode={colorMode} />
+        {/* <BackgroundImage imageUrl={dotsBackground} /> */}
         <AppContainer>
           <ContentContainer>
             <TopSection>
               <Heading
-                className="uppercase text-neutral-800 text-4xl font-bold"
+                className="uppercase text-neutral-950 decoration-white text-4xl font-bold"
                 level="h1"
               >
                 Namada Shielded Expedition Faucet
@@ -222,12 +227,12 @@ export const App: React.FC = () => {
               {extensionAttachStatus ===
                 ExtensionAttachStatus.PendingDetection && (
                 <InfoContainer>
-                  <Alert type="info">Loading extension wallet...</Alert>
+                  <Alert type="info"><span className="text-yellow text-base">Loading Your Namada Wallet Extension...</span></Alert>
                 </InfoContainer>
               )}
               {extensionAttachStatus === ExtensionAttachStatus.NotInstalled && (
                 <InfoContainer>
-                  <Alert type="error">You must download the extension!</Alert>
+                  <Alert type="error"><span className="text-base">You don't have a wallet yet. Please download the <a href={installEX} target="_blank" rel="noopener noreferrer" className="underline hover:text-yellow">Namada Wallet Extension</a>!</span></Alert>
                 </InfoContainer>
               )}
               {isExtensionConnected && (
@@ -261,37 +266,31 @@ export const App: React.FC = () => {
                     </ActionButton>
                     <div className="font-medium flex flex-col px-1 pb-3 pt-5">
                       <h1 className="text-white mr-2">Note:</h1>
-                      <span className="italic text-white text-md px-5">
-                        1. Maximum limit is 20 NAAN at a time.
+                      <span className="italic text-white text-md px-6 mt-1">
+                        1.  Maximum limit is 20 NAAN at a time.
                       </span>
-                      <span className="italic text-white text-md px-5">
-                        2. If the faucet is successfully, come back after 24
-                        hours.
+                      <span className="italic text-white text-md px-6 mt-1">
+                        2.  If the faucet is successfully, come back after 24 hours if you want to receive more <span className="text-yellow">(currently not applicable)</span>.
                       </span>
-                      <span className="italic text-white text-md px-5">
-                        3. If the faucet is failed, it looks like there is no
+                      <span className="italic text-white text-md px-6 mt-1">
+                        3.  If the faucet is failed, it looks like there is no
                         more NAAN in the pool, so come back in 24 hours.
+                      </span>
+                      <span className="italic text-white text-md px-6 mt-1">
+                        4.  Donate: <span className="text-yellow">tnam1qpr477sufxt3sz800hsgr9xyf3dvc4fjguejd27c</span>
                       </span>
                     </div>
                   </InfoContainer>
                 )}
             </FaucetContainer>
-            {/* <BottomSection> */}
-            {/* <CardsContainer>
-                <CallToActionCard
-                  description="Contribute to the Namada network's resiliency"
-                  title="RUN A FULL NODE"
-                  href={runFullNodeUrl}
-                />
-                <CallToActionCard
-                  description="Integrate Namada into applications or extend its capabilities"
-                  title="BECOME A BUILDER"
-                  href={becomeBuilderUrl}
-                />
-              </CardsContainer> */}
+            <BottomSection>
             {/* <Faq /> */}
-            {/* </BottomSection> */}
-            {/* <BackgroundImage imageUrl={dotsBackground} /> */}
+            <div className="flex justify-center font-medium italic text-neutral-950 text-xl text-center">Built by Crew Member
+              <a href={twitterUrl} className="italic ml-1 hover:text-blue-700 hover:underline" target="_blank" rel="noopener noreferrer">
+                @thanhphm
+              </a>
+            </div>
+            </BottomSection>
           </ContentContainer>
         </AppContainer>
       </ThemeProvider>

@@ -54,9 +54,8 @@ export const FaucetForm: React.FC<Props> = ({
   // const [statusText, setStatusText] = useState<string>();
   const [statusText, setStatusText] = useState<string | JSX.Element>();
   const [responseDetails, setResponseDetails] = useState<TransferResponse>();
-
   const accountsSelectData = accounts.map(({ alias, address }) => ({
-    label: `${alias} - ${shortenAddress(address)}`,
+    label: `${alias} -- ${shortenAddress(address)}`,
     value: address,
   }));
 
@@ -116,15 +115,15 @@ export const FaucetForm: React.FC<Props> = ({
 
       const { challenge, tag } = await api
         .challenge(account.publicKey)
-        .catch(({ message, code }) => {
-          throw new Error(`Unable to request challenge: ${code} - ${message}`);
+        .catch(({ message }) => {
+          throw new Error(`${message}`);
         });
 
       const solution = computePowSolution(challenge, difficulty || 0);
 
       const signer = integration.signer();
       if (!signer) {
-        throw new Error("signer not defined");
+        throw new Error("Signer not defined");
       }
 
       const sig = await signer.sign(account.address, challenge);
@@ -147,8 +146,8 @@ export const FaucetForm: React.FC<Props> = ({
 
       const response = await api.submitTransfer(submitData).catch((e) => {
         console.info(e);
-        const { code, message } = e;
-        throw new Error(`Unable to submit transfer: ${code} ${message}`);
+        const { message } = e;
+        throw new Error(`${message}`);
       });
 
       if (response.sent) {
@@ -158,8 +157,8 @@ export const FaucetForm: React.FC<Props> = ({
         setStatus(Status.Completed);
         // setStatusText("Faucet Successfully!");
         setStatusText(
-          <div className="w-full bg-yellow-900 text-yellow border border-current rounded-lg py-4 flex justify-center">
-            Faucet Successfully! Please come back in 24 hours
+          <div className="w-full bg-yellow-900 text-yellow border border-current rounded-md text-base py-4 flex justify-center">
+            Faucet Successfully!!! Please check your wallet.
           </div>
         );
         setResponseDetails(response);
@@ -169,8 +168,8 @@ export const FaucetForm: React.FC<Props> = ({
       setStatus(Status.Completed);
       // setStatusText("Faucet Failed!");
       setStatusText(
-        <div className="w-full bg-neutral-800 text-red-500 border border-current rounded-lg py-4 flex justify-center">
-          Faucet Successfully! Please come back in 24 hours
+        <div className="w-full bg-neutral-800 text-red-500 border border-current rounded-md text-base py-4 flex justify-center">
+          Faucet Failed!!! Please come back after 24 hours.
         </div>
       );
       console.info(response);
@@ -183,8 +182,15 @@ export const FaucetForm: React.FC<Props> = ({
   const handleFocus = (e: React.ChangeEvent<HTMLInputElement>): void =>
     e.target.select();
 
+   const logoNAMADA = 'https://namada.net/_next/static/media/namada-yellow.77693ede.gif'
+
   return (
     <FaucetFormContainer>
+
+      <div className="flex justify-center items-center pb-3">
+        <img src={logoNAMADA} width="330px" height="110px" alt="Namada Faucet" style={{}} />
+      </div>
+      
       {settingsError && <Alert type="error">{settingsError}</Alert>}
       <InputContainerAccount>
         {accounts.length > 0 ?
@@ -195,7 +201,7 @@ export const FaucetForm: React.FC<Props> = ({
             onChange={(e) => setAccount(accountLookup[e.target.value])}
           />
         : <div>
-            You have no signing accounts! Import or create an account in the
+            You have no signing accounts! Import or create an account in the namada wallet
             extension, then reload this page.
           </div>
         }
@@ -221,7 +227,7 @@ export const FaucetForm: React.FC<Props> = ({
           onChange={(e) => setAmount(e.target.value?.toNumber())}
           error={
             amount && amount > limit ?
-              `Amount must be less than or equal to ${limit}`
+              `Amount must be less than or equal to ${limit} NAAN`
             : ""
           }
         />
@@ -233,8 +239,10 @@ export const FaucetForm: React.FC<Props> = ({
             <InfoContainer>
               {/* <Alert type="warning">Processing faucet transfer...</Alert> */}
               {/* <Alert type="warning"><LinearProgress color="success" /></Alert> */}
+              <div className="text-yellow flex justify-center flex-start font-medium text-base pb-3">Please wait a few seconds, {amount === undefined || amount === 0 || amount > 20 ? "" : amount} NAAN is coming to your wallet...</div>
               <Alert type="warning">
-                <LinearProgress color="success" />
+                
+                <LinearProgress style={{ height: '8px' }} color="success" />
               </Alert>
             </InfoContainer>
           )}
@@ -268,7 +276,7 @@ export const FaucetForm: React.FC<Props> = ({
           onClick={handleSubmit}
           disabled={!isFormValid}
         >
-          Faucet NAAN Testnet
+          Faucet {amount === undefined || amount === 0 || amount > 20 ? "" : amount} NAAN
         </ActionButton>
       </ButtonContainer>
     </FaucetFormContainer>

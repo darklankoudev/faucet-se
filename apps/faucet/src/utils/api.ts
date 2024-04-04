@@ -7,8 +7,8 @@ import {
 } from "./types";
 
 enum Endpoint {
-  Settings = "/setting",
-  Challenge = "/challenge",
+  Settings = "/rules",
+  Challenge = "/update",
   Transfer = "",
 }
 
@@ -42,7 +42,7 @@ export class API {
           // If code 429 is received on any request, rate limiting is blocking
           // requests from this this IP, so provide a specific message:
           if (response.code === 429) {
-            response.message = "Too many requests! Try again in one hour.";
+            response.message = "Too many requests! Please try again later.";
           }
           return Promise.reject(response);
         });
