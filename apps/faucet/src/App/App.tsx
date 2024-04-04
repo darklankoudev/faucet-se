@@ -23,7 +23,7 @@ import { chains } from "@namada/chains";
 import { useUntil } from "@namada/hooks";
 import { Account, AccountType } from "@namada/types";
 import { API } from "utils";
-// import dotsBackground from "../../public/bg-dots.svg";
+import dotsBackground from "../../public/bg-dots.svg";
 import logoBackground from "../../public/bg-logo.svg";
 // import { Faq } from "./Faq";
 
@@ -203,7 +203,7 @@ export const App: React.FC = () => {
         ...settings,
       }}
     >
-      <BackgroundImage imageUrl={logoBackground} />
+      <BackgroundImage imageUrl={dotsBackground} />
       <ThemeProvider theme={theme}>
         {!isTestnetLive && settings?.startsAtText && (
           <Banner>
