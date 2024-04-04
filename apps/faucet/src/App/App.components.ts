@@ -1,6 +1,6 @@
 import { ColorMode, DesignConfiguration } from "@namada/utils";
 import styled, { createGlobalStyle } from "styled-components";
-import imageBG from "../../public/background.svg"
+import imageBG from "../assets/background.svg"
 type GlobalStyleProps = {
   colorMode: ColorMode;
 };
@@ -35,12 +35,12 @@ const getColor = (
 export const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
   html, body {
     background-color: ${(props) => props.theme.colors.primary.main};
-    // transition: background-color 0.5s ease;
+    transition: background-color 0.5s ease;
     min-width: fit-content;
     background-image: url(${imageBG});
     background-size: 770px;
     background-repeat: repeat;
-    // background-attachment: fixed;
+    background-attachment: fixed;
 `;
 export const AppContainer = styled.div`
   display: flex;
