@@ -8,6 +8,7 @@ import {
   AppContainer,
   BackgroundImage,
   BackgroundImageFix,
+  // BackgroundImageFix,
   Banner,
   BannerContents,
   BottomSection,

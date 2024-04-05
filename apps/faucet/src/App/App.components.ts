@@ -1,6 +1,5 @@
 import { ColorMode, DesignConfiguration } from "@namada/utils";
 import styled, { createGlobalStyle } from "styled-components";
-// import imageBG from "../assets/background.svg"
 type GlobalStyleProps = {
   colorMode: ColorMode;
 };
@@ -34,15 +33,13 @@ const getColor = (
 // on whether the user is logged in
 export const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
   html, body {
-    background-color: ${(props) => props.theme.colors.secondary.main};
+    background-color: ${(props) => props.theme.colors.primary.main};
     transition: background-color 0.5s ease;
     min-width: fit-content;
 `;
 export const AppContainer = styled.div`
   display: flex;
   justify-content: center;
-  // position: relative;
-  // top: 50%;
   align-items: center;
   flex-direction: column;
   width: 100%;
@@ -118,7 +115,7 @@ export const BackgroundImage = styled.div<{
   z-index: 0;
   background-image: url(${(props) => props.imageUrl});
   background-size: 770px;
-  // background-attachment: fixed;
+  background-attachment: fixed;
 `;
 
 
@@ -126,11 +123,11 @@ export const BackgroundImageFix = styled.div<{
   imageUrl: string;
 }>`
   width: 100%;
-  height: 20vh;
+  height: 10vh;
   z-index: 0;
   background-image: url(${(props) => props.imageUrl});
   background-size: 770px;
-  // background-attachment: fixed;
+  background-attachment: fixed;
 `;
 
 
