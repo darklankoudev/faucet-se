@@ -109,7 +109,6 @@ export const BannerContents = styled.div`
 export const BackgroundImage = styled.div<{
   imageUrl: string;
 }>`
-  // position: absolute;
   width: 100%;
   height: 100vh;
   z-index: 0;
@@ -122,8 +121,9 @@ export const BackgroundImage = styled.div<{
 export const BackgroundImageFix = styled.div<{
   imageUrl: string;
 }>`
+  position: absolute;
   width: 100%;
-  height: 10vh;
+  height: 40vh;
   z-index: 0;
   background-image: url(${(props) => props.imageUrl});
   background-size: 770px;
