@@ -203,7 +203,7 @@ export const App: React.FC = () => {
         ...settings,
       }}
     >
-      <BackgroundImage imageUrl={dotsBackground} />
+      <BackgroundImage imageUrl={logoBackground} />
       <ThemeProvider theme={theme}>
         {!isTestnetLive && settings?.startsAtText && (
           <Banner>

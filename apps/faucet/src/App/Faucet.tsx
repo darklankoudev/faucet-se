@@ -15,6 +15,7 @@ import {
   FormStatus,
   InputContainerAccount,
   InputContainerAmount,
+  PreFormatted,
 } from "./Faucet.components";
 
 enum Status {
@@ -253,11 +254,11 @@ export const FaucetForm: React.FC<Props> = ({
             </InfoContainer>
           )}
 
-          {/* {responseDetails && status !== Status.Pending && (
+          {responseDetails && status !== Status.Pending && (
             <PreFormatted>
               {JSON.stringify(responseDetails, null, 2)}
             </PreFormatted>
-          )} */}
+          )}
         </FormStatus>
       )}
       {status === Status.Error && <Alert type="error">{error}</Alert>}

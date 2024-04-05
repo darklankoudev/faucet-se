@@ -34,7 +34,7 @@ const getColor = (
 // on whether the user is logged in
 export const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
   html, body {
-    background-color: ${(props) => props.theme.colors.primary.main};
+    background-color: ${(props) => props.theme.colors.secondary.main};
     transition: background-color 0.5s ease;
     min-width: fit-content;
 `;
@@ -112,6 +112,7 @@ export const BannerContents = styled.div`
 export const BackgroundImage = styled.div<{
   imageUrl: string;
 }>`
+  // position: absolute;
   width: 100%;
   height: 100vh;
   z-index: 0;
@@ -124,9 +125,8 @@ export const BackgroundImage = styled.div<{
 export const BackgroundImageFix = styled.div<{
   imageUrl: string;
 }>`
-  position: absolute;
   width: 100%;
-  height: 10vh;
+  height: 70vh;
   z-index: 0;
   background-image: url(${(props) => props.imageUrl});
   background-size: 770px;
