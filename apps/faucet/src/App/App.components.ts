@@ -118,7 +118,7 @@ export const BackgroundImage = styled.div<{
   z-index: 0;
   background-image: url(${(props) => props.imageUrl});
   background-size: 770px;
-  background-attachment: fixed;
+  // background-attachment: fixed;
 `;
 
 
@@ -126,11 +126,11 @@ export const BackgroundImageFix = styled.div<{
   imageUrl: string;
 }>`
   width: 100%;
-  height: 70vh;
+  height: 20vh;
   z-index: 0;
   background-image: url(${(props) => props.imageUrl});
   background-size: 770px;
-  background-attachment: fixed;
+  // background-attachment: fixed;
 `;
 
 

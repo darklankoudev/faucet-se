@@ -30,6 +30,7 @@ export type TransferResponse = {
   sent: boolean;
   target: string;
   token: string;
+  tx_hash: string; 
 };
 
 export type ErrorResponse = {

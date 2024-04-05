@@ -15,7 +15,6 @@ import {
   FormStatus,
   InputContainerAccount,
   InputContainerAmount,
-  PreFormatted,
 } from "./Faucet.components";
 
 enum Status {
@@ -52,7 +51,6 @@ export const FaucetForm: React.FC<Props> = ({
   const [amount, setAmount] = useState<number | undefined>(undefined);
   const [error, setError] = useState<string>();
   const [status, setStatus] = useState(Status.Completed);
-  // const [statusText, setStatusText] = useState<string>();
   const [statusText, setStatusText] = useState<string | JSX.Element>();
   const [responseDetails, setResponseDetails] = useState<TransferResponse>();
   const accountsSelectData = accounts.map(({ alias, address }) => ({
@@ -159,9 +157,8 @@ export const FaucetForm: React.FC<Props> = ({
         // setStatusText("Faucet Successfully!");
         setStatusText(
           <div className="w-full bg-yellow-900 text-yellow border border-current rounded-md text-base py-4 flex justify-center">
-            Faucet Successfully!!! Please check your wallet.
-          </div>
-        );
+            Faucet {amount === undefined || amount === 0 || amount > 20 ? "" : amount} NAAN Successfully!!! Please check your wallet.
+          </div>)
         setResponseDetails(response);
         return;
       }
@@ -183,7 +180,7 @@ export const FaucetForm: React.FC<Props> = ({
   const handleFocus = (e: React.ChangeEvent<HTMLInputElement>): void =>
     e.target.select();
 
-   const logoNAMADA = 'https://namada.net/_next/static/media/namada-yellow.77693ede.gif'
+  const logoNAMADA = 'https://namada.net/_next/static/media/namada-yellow.77693ede.gif'
 
   return (
     <FaucetFormContainer>
@@ -238,8 +235,6 @@ export const FaucetForm: React.FC<Props> = ({
         <FormStatus>
           {status === Status.Pending && (
             <InfoContainer>
-              {/* <Alert type="warning">Processing faucet transfer...</Alert> */}
-              {/* <Alert type="warning"><LinearProgress color="success" /></Alert> */}
               <div className="text-yellow flex justify-center flex-start font-medium text-base pb-3">Please wait a few seconds, {amount === undefined || amount === 0 || amount > 20 ? "" : amount} NAAN is coming to your wallet...</div>
               <Alert type="warning">
                 
@@ -254,11 +249,14 @@ export const FaucetForm: React.FC<Props> = ({
             </InfoContainer>
           )}
 
-          {responseDetails && status !== Status.Pending && (
-            <PreFormatted>
-              {JSON.stringify(responseDetails, null, 2)}
-            </PreFormatted>
+          {responseDetails && responseDetails.sent && status !== Status.Pending && (
+            <div className="flex flex-col justify-center items-center text-base pb-7">
+              <a href={`https://namada-explorer-thanhphm-dev.uk/transaction/hash/detail/${responseDetails.tx_hash}`} className="underline text-blue-500 hover:text-yellow flex flex-1" target="_blank" rel="noopener noreferrer">
+                <span className="underline italic text-blue-600 hover:text-white">Click To View Transaction Details</span>
+              </a>
+            </div>
           )}
+  
         </FormStatus>
       )}
       {status === Status.Error && <Alert type="error">{error}</Alert>}
